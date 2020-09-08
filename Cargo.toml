@@ -1,4 +1,5 @@
 [workspace]
 members = [
-    'linear_algebra',
+  'cip',
+  'linear_algebra',
 ]
