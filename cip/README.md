@@ -30,3 +30,9 @@ cip -r rust-lang/mdBook -f linux
 
 - [octocrab](https://github.com/XAMPPRocky/octocrab)：一个第三方的 GitHub API 客户端，实现了 action、pull、search 等，可以参考其代码
 - [GitHub Releases API](https://docs.github.com/en/rest/reference/repos#releases)
+
+## TODO
+
+- [ ] 可输出详细日志。`-v` `--verbose` 选项
+- [ ] 可自定义安装目录，默认为 `CARGO_HOME/bin`。`-o` `--output` 选项
+- [ ] 可设置代理。`-p` `--proxy` 选项

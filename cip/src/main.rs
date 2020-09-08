@@ -1,8 +1,19 @@
+use std::process::{Child, Command};
 use std::str::Split;
 
 use reqwest::Error;
 use serde_json::Value;
 use structopt::StructOpt;
+
+/// 使用 curl 下载
+fn download(file_path: &str, url: &str) -> std::io::Result<Child> {
+    Command::new("curl")
+        .arg("-L")
+        .arg("-o")
+        .arg(file_path)
+        .arg(url)
+        .spawn()
+}
 
 #[derive(Debug, StructOpt)]
 struct Opt {
@@ -56,7 +67,18 @@ async fn main() -> Result<(), Error> {
         },
         _ => panic!("错误"),
     };
-    println!("Download URL: {}", download_url);
+    println!("Downloading: {}", download_url);
+    // 开始下载
+    if let Ok(mut child) = download(&file, download_url) {
+        if let Err(_) = child.wait() {
+            // TODO 删除已经下载的文件
+            panic!("下载失败！")
+        } else {
+            println!("下载完成！");
+        }
+    } else {
+        panic!("创建下载进程失败！");
+    }
 
     Ok(())
 }
