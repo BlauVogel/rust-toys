@@ -1,11 +1,29 @@
 # cip
 
-cip，即 Cargo Install Plus，是对 cargo install 命令的扩展。像 `cargo install mdbook` 经常是下载源码然后编译，很麻烦，故开发这个小工具来直接下载 github release 中的二进制文件。
+cip，即 Cargo Install Plus，是对 cargo install 命令的扩展。
+
+## Why?
+
+像 `cargo install mdbook` 经常是下载源码然后编译，很麻烦，故开发这个小工具来直接下载 github release 中的二进制文件。
+
+## Requirements
+
+- Rust (`cargo`, `rustc`)
+- curl (for downloading files)
+
+## Build
+
+```bash
+$ git clone --depth=1 https://github.com/BlauVogel/rust-toys
+$ cd rust-toys
+$ cargo build --package cip --bin cip --release
+$ ./target/release/cip --help
+```
 
 ## 用法
 
 ```bash
-❯ cip --help
+$ cip --help
 cip 0.1.0
 
 USAGE:
@@ -23,7 +41,7 @@ OPTIONS:
 例子：
 
 ```bash
-cip -r rust-lang/mdBook -f linux
+cip -r rust-lang/mdBook -f mdbook.tar.gz
 ```
 
 ## 参考
